@@ -1,38 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: productservice-deployment
+  name: cashupservice-deployment
   labels:
-    app: productservice
+    app: cashupservice
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: productservice
+      app: cashupservice
   template:
     metadata:
       labels:
-        app: productservice
+        app: cashupservice
 
     spec:
       containers:
-        - name: productservice
-          image: akki1999/productservice:latest
+        - name: cashupservice
+          image: akki1999/cashupservice:latest
           ports:
             - containerPort: 8080
           env:
             - name: KEY1
               valueFrom:
                 configMapKeyRef:
-                  name: productservice-config
+                  name: cashupservice-config
                   key: someKey1
             - name: NEXT_SERVICE
               valueFrom:
                 configMapKeyRef:
-                  name: productservice-config
+                  name: cashupservice-config
                   key: nextService
             - name: SERVICE_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: productservice-secrets
-                  key: productservicepi-key
+                  name: cashupservice-secrets
+                  key: cashupservicepi-key

@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: productservice
+  name: paymentservice
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
-    app: productservice
+    app: paymentservice
   ports:
     - protocol: TCP
       port: 8080

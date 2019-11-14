@@ -1,38 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: productservice-deployment
+  name: creditservice-deployment
   labels:
-    app: productservice
+    app: creditservice
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: productservice
+      app: creditservice
   template:
     metadata:
       labels:
-        app: productservice
+        app: creditservice
 
     spec:
       containers:
-        - name: productservice
-          image: akki1999/productservice:latest
+        - name: creditservice
+          image: akki1999/creditservice:latest
           ports:
             - containerPort: 8080
           env:
             - name: KEY1
               valueFrom:
                 configMapKeyRef:
-                  name: productservice-config
+                  name: creditservice-config
                   key: someKey1
             - name: NEXT_SERVICE
               valueFrom:
                 configMapKeyRef:
-                  name: productservice-config
+                  name: creditservice-config
                   key: nextService
             - name: SERVICE_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: productservice-secrets
-                  key: productservicepi-key
+                  name: creditservice-secrets
+                  key: creditservicepi-key
